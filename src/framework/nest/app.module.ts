@@ -6,9 +6,6 @@ import { UseCaseProviders } from '@framework/providers/usecase.providers';
 @Module({
   imports: [],
   controllers: [EmpresaController],
-  providers: [
-    ...RepositoryProviders,
-    ...UseCaseProviders,
-  ],
+  providers: [...RepositoryProviders, ...UseCaseProviders],
 })
-export class AppModule { }
+export class AppModule {}

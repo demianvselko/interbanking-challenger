@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "0a978b81-8f22-4c86-9e3b-01fec16b19e4",
+		"name": "Empresas API",
+		"description": "Colección para probar los endpoints de empresas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12682732"
+	},
+	"item": [
+		{
+			"name": "Registrar empresa PYME",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cuit\": \"20304050602\",\n  \"razonSocial\": \"Mi Empresa PYME\",\n  \"tipo\": \"PYME\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/empresas/adhesion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresas",
+						"adhesion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrar empresa Corporativa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cuit\": \"20987654321\",\n  \"razonSocial\": \"Mi Empresa Corporativa\",\n  \"tipo\": \"CORPORATIVA\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/empresas/adhesion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresas",
+						"adhesion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener empresas adheridas (rango dinámico)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/empresas/adheridas?from=2025-08-01&to=2025-08-31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresas",
+						"adheridas"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2025-08-01"
+						},
+						{
+							"key": "to",
+							"value": "2025-08-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener empresas transferencias (rango dinámico)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/empresas/transferencias?from=2025-08-01&to=2025-08-31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresas",
+						"transferencias"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2025-08-01"
+						},
+						{
+							"key": "to",
+							"value": "2025-08-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener empresas adheridas último mes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/empresas/adheridas/ultimo-mes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresas",
+						"adheridas",
+						"ultimo-mes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener empresas transferencias último mes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/empresas/transferencias/ultimo-mes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"empresas",
+						"transferencias",
+						"ultimo-mes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
