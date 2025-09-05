@@ -1,6 +1,7 @@
 import { MontoVO } from '@core/value-objects/monto.vo';
 
 export class Transferencia {
+  empresaId: string;
   constructor(
     public readonly id: string,
     public readonly idEmpresa: string,
@@ -8,7 +9,7 @@ export class Transferencia {
     public readonly cuentaCredito: string,
     public readonly importe: MontoVO,
     public readonly fecha: Date,
-  ) {}
+  ) { }
 
   toPrimitives() {
     return {
