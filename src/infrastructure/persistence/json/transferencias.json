@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "importe": 1500,
+        "empresaId": "20304050607",
+        "cuentaDebito": "111-222-33",
+        "cuentaCredito": "444-555-66",
+        "fecha": "2025-09-02T12:00:00.000Z"
+    },
+    {
+        "id": "2",
+        "importe": 5000,
+        "empresaId": "20304050608",
+        "cuentaDebito": "222-333-44",
+        "cuentaCredito": "555-666-77",
+        "fecha": "2025-08-15T09:30:00.000Z"
+    },
+    {
+        "id": "3",
+        "importe": 3200,
+        "empresaId": "20304050609",
+        "cuentaDebito": "333-444-55",
+        "cuentaCredito": "666-777-88",
+        "fecha": "2025-08-20T15:45:00.000Z"
+    }
+]
