@@ -27,16 +27,16 @@
         "core/*"
       ],
       "@application/*": [
-        "application/*"
+        "src/context/application/*"
       ],
       "@infrastructure/*": [
-        "infrastructure/*"
+        "src/context/infrastructure/*"
       ],
       "@framework/*": [
-        "framework/*"
+        "src/context/framework/*"
       ],
       "@shared/*": [
-        "shared/*"
+        "src/context/shared/*"
       ]
     }
   }
