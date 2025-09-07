@@ -128,3 +128,7 @@ Input Error:
     ]
   }
 }
+
+Cosas que asumi:
+que las trasnferencias no pueden ser negativas, supongo que existe una clase para los reintegros.
+Las transferencias pueden ser a futuro.
