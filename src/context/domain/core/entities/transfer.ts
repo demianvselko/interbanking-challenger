@@ -26,11 +26,19 @@ export class Transfer {
     this._date = date;
   }
 
+  get id(): string { return this._id; }
+  get companyId(): string { return this._companyId; }
+  get debitAccount(): AccountNumberVO { return this._debitAccount; }
+  get creditAccount(): AccountNumberVO { return this._creditAccount; }
+  get amount(): number { return this._amount.getValue(); }
+  get date(): Date { return this._date; }
+
   static create(
     companyId: string,
     debitAccount: AccountNumberVO,
     creditAccount: AccountNumberVO,
-    amount: AmountVO
+    amount: AmountVO,
+    date: Date = new Date()
   ): Transfer {
     if (debitAccount.getValue() === creditAccount.getValue()) {
       throw new Error('Debit and credit accounts cannot be the same');
@@ -42,31 +50,18 @@ export class Transfer {
       debitAccount,
       creditAccount,
       amount,
-      new Date()
+      date
     );
   }
 
-  get id(): string {
-    return this._id;
-  }
-
-  get companyId(): string {
-    return this._companyId;
-  }
-
-  get debitAccount(): AccountNumberVO {
-    return this._debitAccount;
-  }
-
-  get creditAccount(): AccountNumberVO {
-    return this._creditAccount;
-  }
-
-  get amount(): number {
-    return this._amount.getValue();
-  }
-
-  get date(): string {
-    return this._date.toISOString();
+  toPrimitives() {
+    return {
+      id: this._id,
+      companyId: this._companyId,
+      debitAccount: this._debitAccount.getValue(),
+      creditAccount: this._creditAccount.getValue(),
+      amount: this._amount.getValue(),
+      date: this._date.toISOString(),
+    };
   }
 }
