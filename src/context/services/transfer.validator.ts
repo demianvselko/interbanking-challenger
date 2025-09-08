@@ -1,5 +1,5 @@
-import { Company } from '../entities/company';
-import { AccountNumberVO } from '../value-objects/transfer/accountNumber';
+import { Company } from '../core/entities/company';
+import { AccountNumberVO } from '../core/value-objects/transfer/accountNumber';
 
 export class TransferValidator {
 
