@@ -1,8 +1,8 @@
-import { TransferRepository } from "context/ports/transfer.repository";
-import { Transfer } from "context/domain/core/entities/transfer";
-import { AccountNumberVO } from "context/domain/core/value-objects/transfer/accountNumber";
-import { AmountVO } from "context/domain/core/value-objects/transfer/amount";
-import { loadJsonData } from "infrastructure/utils/jsonLoader";
+import { TransferRepository } from "@context/ports/transfer.repository";
+import { Transfer } from "@context/domain/core/entities/transfer";
+import { AccountNumberVO } from "@context/domain/core/value-objects/transfer/accountNumber";
+import { AmountVO } from "@context/domain/core/value-objects/transfer/amount";
+import { loadJsonData } from "@infrastructure/utils/jsonLoader";
 
 export class TransferRepositoryImpl implements TransferRepository {
     private transfers: Transfer[] = [];

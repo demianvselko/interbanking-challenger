@@ -1,12 +1,12 @@
 
-import { Company } from 'context/domain/core/entities/company';
-import { CompanyNameVO } from 'context/domain/core/value-objects/company/companyName';
-import { CompanyTypeVO } from 'context/domain/core/value-objects/company/companyTypes';
-import { CuitVO } from 'context/domain/core/value-objects/company/cuit';
-import { AccountNumberVO } from 'context/domain/core/value-objects/transfer/accountNumber';
-import { CompanyRepository } from 'context/ports/company.repository';
+import { Company } from '@context/domain/core/entities/company';
+import { CompanyNameVO } from '@context/domain/core/value-objects/company/companyName';
+import { CompanyTypeVO } from '@context/domain/core/value-objects/company/companyTypes';
+import { CuitVO } from '@context/domain/core/value-objects/company/cuit';
+import { AccountNumberVO } from '@context/domain/core/value-objects/transfer/accountNumber';
+import { CompanyRepository } from '@context/ports/company.repository';
 import { Result } from '@context/shared/result';
-import { Injectable } from 'interface/shared/dependencyInjection/injectable';
+import { Injectable } from '@interface/shared/dependencyInjection/injectable';
 import { CreateCompanyRequest } from '../dto/createCompany.dto';
 @Injectable()
 export class CreateCompanyUseCase {

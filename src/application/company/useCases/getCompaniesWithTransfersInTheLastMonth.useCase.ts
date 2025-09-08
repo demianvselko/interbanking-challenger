@@ -1,9 +1,9 @@
-import { CompanyRepository } from 'context/ports/company.repository';
-import { TransferRepository } from 'context/ports/transfer.repository';
-import { Company } from 'context/domain/core/entities/company';
+import { CompanyRepository } from '@context/ports/company.repository';
+import { TransferRepository } from '@context/ports/transfer.repository';
+import { Company } from '@context/domain/core/entities/company';
 import { Result } from '@context/shared/result';
 import { normalizeError } from '@context/shared/error.utils';
-import { Injectable } from 'interface/shared/dependencyInjection/injectable';
+import { Injectable } from '@interface/shared/dependencyInjection/injectable';
 
 @Injectable()
 export class FindCompaniesWithTransfersUseCase {

@@ -1,11 +1,6 @@
-import { CompanyRepository } from "./company.repository";
 import { Company } from "../domain/core/entities/company";
+import { MockCompanyRepository } from "../../../__mocks__/company.respository.mock";
 
-class MockCompanyRepository extends CompanyRepository {
-    save = jest.fn<Promise<void>, [Company]>();
-    findCompaniesByAdhesionDateRange = jest.fn<Promise<Company[]>, [Date, Date]>();
-    findByIds = jest.fn<Promise<Company[]>, [string[]]>();
-}
 
 describe("CompanyRepository (abstract)", () => {
     let repo: MockCompanyRepository;

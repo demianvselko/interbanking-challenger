@@ -1,11 +1,11 @@
-import { CompanyRepository } from "context/ports/company.repository";
-import { Company } from "context/domain/core/entities/company";
-import { CuitVO } from "context/domain/core/value-objects/company/cuit";
-import { CompanyNameVO } from "context/domain/core/value-objects/company/companyName";
-import { CompanyTypeVO } from "context/domain/core/value-objects/company/companyTypes";
-import { AccountNumberVO } from "context/domain/core/value-objects/transfer/accountNumber";
-import { loadJsonData } from "infrastructure/utils/jsonLoader";
-import { CompanyDTO } from "interface/http/controllers/companyDTO";
+import { CompanyRepository } from "@context/ports/company.repository";
+import { Company } from "@context/domain/core/entities/company";
+import { CuitVO } from "@context/domain/core/value-objects/company/cuit";
+import { CompanyNameVO } from "@context/domain/core/value-objects/company/companyName";
+import { CompanyTypeVO } from "@context/domain/core/value-objects/company/companyTypes";
+import { AccountNumberVO } from "@context/domain/core/value-objects/transfer/accountNumber";
+import { loadJsonData } from "@infrastructure/utils/jsonLoader";
+import { CompanyDTO } from "@interface/http/controllers/companyDTO";
 
 export class CompanyRepositoryImpl implements CompanyRepository {
     private companies: Company[] = [];

@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
-import { CreateCompanyUseCase } from 'application/company/useCases/createCompany.useCase';
-import { FindCompaniesByAdhesionUseCase } from 'application/company/useCases/getCompaniesAdheredInLastMonth.useCase';
-import { FindCompaniesWithTransfersUseCase } from 'application/company/useCases/getCompaniesWithTransfersInTheLastMonth.useCase';
+import { CreateCompanyUseCase } from '@application/company/useCases/createCompany.useCase';
+import { FindCompaniesByAdhesionUseCase } from '@application/company/useCases/getCompaniesAdheredInLastMonth.useCase';
+import { FindCompaniesWithTransfersUseCase } from '@application/company/useCases/getCompaniesWithTransfersInTheLastMonth.useCase';
 import { CreateCompanyHttpRequest } from '../dto/createCompany.http.dto';
 
 @Controller('companies')

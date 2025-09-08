@@ -2,7 +2,7 @@ import { v4 as uuid4 } from 'uuid';
 import { AmountVO } from '../value-objects/transfer/amount';
 import { AccountNumberVO } from '../value-objects/transfer/accountNumber';
 import { Result } from '@context/shared/result';
-import { TransferErrors } from 'context/domain/errors/transfer.errors';
+import { TransferErrors } from '@context/domain/errors/transfer.errors';
 
 export class Transfer {
   private constructor(
