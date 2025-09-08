@@ -1,15 +1,17 @@
+import { Result } from "context/shraed/result";
+
 export class AmountVO {
-  private readonly value: number;
+  private constructor(private readonly value: number) { }
   private static readonly MAX = 1_000_000;
 
-  constructor(value: number) {
+  static create(value: number): Result<AmountVO> {
     if (value <= 0) {
-      throw new Error('Amount must be greater than zero');
+      return Result.fail('Amount must be greater than zero');
     }
     if (value > AmountVO.MAX) {
-      throw new Error(`Amount must not exceed ${AmountVO.MAX}`);
+      return Result.fail(`Amount must not exceed ${AmountVO.MAX}`);
     }
-    this.value = value;
+    return Result.ok(new AmountVO(value));
   }
 
   getValue(): number {

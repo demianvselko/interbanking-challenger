@@ -5,13 +5,7 @@ export class TransferError extends Error {
     }
 }
 
-export class TransferErrors {
-    static readonly SAME_ACCOUNT = new TransferError(
-        'Accounts cannot be the same'
-    );
-
-    static readonly NEGATIVE_AMOUNT = new TransferError(
-        'The transfer amount must be greater than zero'
-    );
-
-}
+export const TransferErrors = {
+    SAME_ACCOUNT: new TransferError('Accounts cannot be the same'),
+    NEGATIVE_AMOUNT: new TransferError('The transfer amount must be greater than zero'),
+};

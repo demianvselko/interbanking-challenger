@@ -1,11 +1,11 @@
-import { CompanyError } from "context/domain/errors/company.errors";
-import { Result } from "context/shraed/result";
-import { AdhesionDateVO } from "../value-objects/company/adhesionDate";
-import { CompanyNameVO } from "../value-objects/company/companyName";
-import { CompanyTypeVO } from "../value-objects/company/companyTypes";
-import { CuitVO } from "../value-objects/company/cuit";
-import { AccountNumberVO } from "../value-objects/transfer/accountNumber";
 import { v4 as uuid4 } from 'uuid';
+import { CuitVO } from '../value-objects/company/cuit';
+import { CompanyNameVO } from '../value-objects/company/companyName';
+import { AdhesionDateVO } from '../value-objects/company/adhesionDate';
+import { AccountNumberVO } from '../value-objects/transfer/accountNumber';
+import { CompanyTypeVO } from '../value-objects/company/companyTypes';
+import { Result } from 'context/shraed/result';
+import { CompanyErrors } from 'context/domain/errors/company.errors';
 
 export class Company {
   private constructor(
@@ -17,12 +17,12 @@ export class Company {
     private readonly _accounts: AccountNumberVO[]
   ) { }
 
-  get id() { return this._id; }
-  get cuit() { return this._cuit; }
-  get name() { return this._name; }
-  get dateOfAddition() { return this._dateOfAddition; }
-  get type() { return this._type; }
-  get accounts() { return this._accounts; }
+  get id(): string { return this._id; }
+  get cuit(): CuitVO { return this._cuit; }
+  get name(): CompanyNameVO { return this._name; }
+  get dateOfAddition(): AdhesionDateVO { return this._dateOfAddition; }
+  get type(): CompanyTypeVO { return this._type; }
+  get accounts(): AccountNumberVO[] { return this._accounts; }
 
   static create(
     cuit: CuitVO,
@@ -30,24 +30,27 @@ export class Company {
     type: CompanyTypeVO,
     accounts: AccountNumberVO[] = []
   ): Result<Company> {
+    const dateResult = AdhesionDateVO.create(new Date());
+    if (!dateResult.ok) return Result.fail(dateResult.error);
+
     try {
       const company = new Company(
         uuid4(),
         cuit,
         name,
-        new AdhesionDateVO(new Date()),
+        dateResult.value,
         type,
         accounts
       );
       return Result.ok(company);
-    } catch (err) {
-      return Result.fail(new CompanyError('Failed to create company'));
+    } catch {
+      return Result.fail(CompanyErrors.INVALID_NAME);
     }
   }
 
   addAccount(account: AccountNumberVO): Result<void> {
     if (this._accounts.some(acc => acc.getValue() === account.getValue())) {
-      return Result.fail(new CompanyError('Duplicate account'));
+      return Result.fail(CompanyErrors.DUPLICATE_ACCOUNT);
     }
     this._accounts.push(account);
     return Result.ok(undefined);

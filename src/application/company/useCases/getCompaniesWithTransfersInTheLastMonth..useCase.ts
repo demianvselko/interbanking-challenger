@@ -1,9 +1,8 @@
-import { CompanyRepository } from "context/ports/company.repository";
-import { TransferRepository } from "context/ports/transfer.repository";
-import { Company } from "context/domain/core/entities/company";
-import { normalizeError } from "context/shraed/error.utils";
-import { Result } from "context/shraed/result";
-
+import { CompanyRepository } from 'context/ports/company.repository';
+import { TransferRepository } from 'context/ports/transfer.repository';
+import { Company } from 'context/domain/core/entities/company';
+import { Result } from 'context/shraed/result';
+import { normalizeError } from 'context/shraed/error.utils';
 
 export class FindCompaniesWithTransfersUseCase {
     constructor(
@@ -20,14 +19,12 @@ export class FindCompaniesWithTransfersUseCase {
             const end = now;
 
             const transfers = await this.transferRepo.findByDateRange(start, end);
-            const companyIds = Array.from(
-                new Set(transfers.map(transfer => transfer.companyId))
-            );
+            const companyIds = Array.from(new Set(transfers.map(transfer => transfer.companyId)));
 
             const companies = await this.companyRepo.findByIds(companyIds);
             return Result.ok(companies);
         } catch (err: unknown) {
-            return Result.fail(normalizeError(err, 'Failed to fetch companies with transfers'));
+            return Result.fail(normalizeError(err, 'Failed to fetch'));
         }
     }
 }

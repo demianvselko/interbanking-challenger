@@ -1,12 +1,14 @@
-export class AdhesionDateVO {
-    private readonly value: Date;
+import { Result } from "context/shraed/result";
 
-    constructor(value: Date) {
+export class AdhesionDateVO {
+    private constructor(private readonly value: Date) { }
+
+    static create(value: Date): Result<AdhesionDateVO> {
         const now = new Date();
         if (value > now) {
-            throw new Error('Adhesion date cannot be in the future');
+            return Result.fail('Adhesion date cannot be in the future');
         }
-        this.value = value;
+        return Result.ok(new AdhesionDateVO(value));
     }
 
     getValue(): Date {

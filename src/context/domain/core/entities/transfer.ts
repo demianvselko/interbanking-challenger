@@ -1,8 +1,9 @@
-import { TransferError } from "context/domain/errors/transfer.errors";
-import { Result } from "context/shraed/result";
-import { AccountNumberVO } from "../value-objects/transfer/accountNumber";
-import { AmountVO } from "../value-objects/transfer/amount";
 import { v4 as uuid4 } from 'uuid';
+import { AmountVO } from '../value-objects/transfer/amount';
+import { AccountNumberVO } from '../value-objects/transfer/accountNumber';
+import { Result } from 'context/shraed/result';
+import { TransferErrors } from 'context/domain/errors/transfer.errors';
+
 export class Transfer {
   private constructor(
     private readonly _id: string,
@@ -28,7 +29,7 @@ export class Transfer {
     date: Date = new Date()
   ): Result<Transfer> {
     if (debitAccount.getValue() === creditAccount.getValue()) {
-      return Result.fail(new TransferError('Accounts cannot be the same'));
+      return Result.fail(TransferErrors.SAME_ACCOUNT);
     }
 
     const transfer = new Transfer(
