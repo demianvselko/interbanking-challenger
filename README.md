@@ -70,3 +70,4 @@ Los enpoints deben estar protegidos con jwt.
 
 Los test no los genere yo, solo la estructura de ellos.
 
+No entendi bien que querian con la lambda pero ahi esta acoplada al resto del proyecto. Despues lo desplegaria con un apigateway, no se que mas desean saber.
