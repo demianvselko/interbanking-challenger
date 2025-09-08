@@ -14,15 +14,27 @@ export class Company {
     private readonly _name: CompanyNameVO,
     private readonly _dateOfAddition: AdhesionDateVO,
     private readonly _type: CompanyTypeVO,
-    private readonly _accounts: AccountNumberVO[]
-  ) { }
+    private readonly _accounts: AccountNumberVO[],
+  ) {}
 
-  get id(): string { return this._id; }
-  get cuit(): CuitVO { return this._cuit; }
-  get name(): CompanyNameVO { return this._name; }
-  get dateOfAddition(): AdhesionDateVO { return this._dateOfAddition; }
-  get type(): CompanyTypeVO { return this._type; }
-  get accounts(): AccountNumberVO[] { return this._accounts; }
+  get id(): string {
+    return this._id;
+  }
+  get cuit(): CuitVO {
+    return this._cuit;
+  }
+  get name(): CompanyNameVO {
+    return this._name;
+  }
+  get dateOfAddition(): AdhesionDateVO {
+    return this._dateOfAddition;
+  }
+  get type(): CompanyTypeVO {
+    return this._type;
+  }
+  get accounts(): AccountNumberVO[] {
+    return this._accounts;
+  }
 
   static create(
     cuit: CuitVO,
@@ -30,7 +42,7 @@ export class Company {
     type: CompanyTypeVO,
     accounts: AccountNumberVO[] = [],
     id?: string,
-    dateOfAddition?: Date
+    dateOfAddition?: Date,
   ): Result<Company> {
     const dateResult = dateOfAddition
       ? AdhesionDateVO.create(dateOfAddition)
@@ -45,7 +57,7 @@ export class Company {
         name,
         dateResult.value,
         type,
-        accounts
+        accounts,
       );
       return Result.ok(company);
     } catch {
@@ -54,7 +66,7 @@ export class Company {
   }
 
   addAccount(account: AccountNumberVO): Result<void> {
-    if (this._accounts.some(acc => acc.getValue() === account.getValue())) {
+    if (this._accounts.some((acc) => acc.getValue() === account.getValue())) {
       return Result.fail(CompanyErrors.DUPLICATE_ACCOUNT);
     }
     this._accounts.push(account);
@@ -68,7 +80,7 @@ export class Company {
       name: this._name.getValue(),
       dateOfAddition: this._dateOfAddition.toISOString(),
       type: this._type.getValue(),
-      accounts: this._accounts.map(acc => acc.getValue()),
+      accounts: this._accounts.map((acc) => acc.getValue()),
     };
   }
 }

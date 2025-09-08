@@ -6,98 +6,123 @@ import { FindCompaniesWithTransfersUseCase } from '@application/company/useCases
 import { Result } from '@context/shared/result';
 
 describe('CompanyController', () => {
-    let controller: CompanyController;
-    let createCompanyUseCase: CreateCompanyUseCase;
-    let findByAdhesionUseCase: FindCompaniesByAdhesionUseCase;
-    let findWithTransfersUseCase: FindCompaniesWithTransfersUseCase;
+  let controller: CompanyController;
+  let createCompanyUseCase: CreateCompanyUseCase;
+  let findByAdhesionUseCase: FindCompaniesByAdhesionUseCase;
+  let findWithTransfersUseCase: FindCompaniesWithTransfersUseCase;
 
-    beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
-            controllers: [CompanyController],
-            providers: [
-                {
-                    provide: CreateCompanyUseCase,
-                    useValue: { execute: jest.fn() }
-                },
-                {
-                    provide: FindCompaniesByAdhesionUseCase,
-                    useValue: { execute: jest.fn() }
-                },
-                {
-                    provide: FindCompaniesWithTransfersUseCase,
-                    useValue: { execute: jest.fn() }
-                }
-            ]
-        }).compile();
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [CompanyController],
+      providers: [
+        {
+          provide: CreateCompanyUseCase,
+          useValue: { execute: jest.fn() },
+        },
+        {
+          provide: FindCompaniesByAdhesionUseCase,
+          useValue: { execute: jest.fn() },
+        },
+        {
+          provide: FindCompaniesWithTransfersUseCase,
+          useValue: { execute: jest.fn() },
+        },
+      ],
+    }).compile();
 
-        controller = module.get<CompanyController>(CompanyController);
-        createCompanyUseCase = module.get<CreateCompanyUseCase>(CreateCompanyUseCase);
-        findByAdhesionUseCase = module.get<FindCompaniesByAdhesionUseCase>(FindCompaniesByAdhesionUseCase);
-        findWithTransfersUseCase = module.get<FindCompaniesWithTransfersUseCase>(FindCompaniesWithTransfersUseCase);
+    controller = module.get<CompanyController>(CompanyController);
+    createCompanyUseCase =
+      module.get<CreateCompanyUseCase>(CreateCompanyUseCase);
+    findByAdhesionUseCase = module.get<FindCompaniesByAdhesionUseCase>(
+      FindCompaniesByAdhesionUseCase,
+    );
+    findWithTransfersUseCase = module.get<FindCompaniesWithTransfersUseCase>(
+      FindCompaniesWithTransfersUseCase,
+    );
+  });
+
+  describe('create', () => {
+    it('should return company primitives on success', async () => {
+      const mockCompany = { toPrimitives: () => ({ name: 'Test Company' }) };
+      (createCompanyUseCase.execute as jest.Mock).mockResolvedValue(
+        Result.ok(mockCompany),
+      );
+
+      const result = await controller.create({
+        cuit: '123',
+        name: 'Test',
+        type: 'PYME',
+        accounts: [],
+      });
+
+      expect(result).toEqual({ name: 'Test Company' });
+      expect(createCompanyUseCase.execute).toHaveBeenCalled();
     });
 
-    describe('create', () => {
-        it('should return company primitives on success', async () => {
-            const mockCompany = { toPrimitives: () => ({ name: 'Test Company' }) };
-            (createCompanyUseCase.execute as jest.Mock).mockResolvedValue(Result.ok(mockCompany));
+    it('should return error if use case fails', async () => {
+      (createCompanyUseCase.execute as jest.Mock).mockResolvedValue(
+        Result.fail('CUIT invalid'),
+      );
 
-            const result = await controller.create({ cuit: '123', name: 'Test', type: 'PYME', accounts: [] });
+      const result = await controller.create({
+        cuit: 'invalid',
+        name: 'Test',
+        type: 'PYME',
+        accounts: [],
+      });
 
-            expect(result).toEqual({ name: 'Test Company' });
-            expect(createCompanyUseCase.execute).toHaveBeenCalled();
-        });
+      expect(result).toEqual({ error: 'CUIT invalid' });
+    });
+  });
 
-        it('should return error if use case fails', async () => {
-            (createCompanyUseCase.execute as jest.Mock).mockResolvedValue(Result.fail('CUIT invalid'));
+  describe('adhesion', () => {
+    it('should return array of company primitives on success', async () => {
+      const mockCompanies = [
+        { toPrimitives: () => ({ name: 'Company A' }) },
+        { toPrimitives: () => ({ name: 'Company B' }) },
+      ];
+      (findByAdhesionUseCase.execute as jest.Mock).mockResolvedValue(
+        Result.ok(mockCompanies),
+      );
 
-            const result = await controller.create({ cuit: 'invalid', name: 'Test', type: 'PYME', accounts: [] });
+      const result = await controller.adhesion();
 
-            expect(result).toEqual({ error: 'CUIT invalid' });
-        });
+      expect(result).toEqual([{ name: 'Company A' }, { name: 'Company B' }]);
+      expect(findByAdhesionUseCase.execute).toHaveBeenCalled();
     });
 
-    describe('adhesion', () => {
-        it('should return array of company primitives on success', async () => {
-            const mockCompanies = [
-                { toPrimitives: () => ({ name: 'Company A' }) },
-                { toPrimitives: () => ({ name: 'Company B' }) },
-            ];
-            (findByAdhesionUseCase.execute as jest.Mock).mockResolvedValue(Result.ok(mockCompanies));
+    it('should return error if use case fails', async () => {
+      (findByAdhesionUseCase.execute as jest.Mock).mockResolvedValue(
+        Result.fail('DB error'),
+      );
 
-            const result = await controller.adhesion();
+      const result = await controller.adhesion();
 
-            expect(result).toEqual([{ name: 'Company A' }, { name: 'Company B' }]);
-            expect(findByAdhesionUseCase.execute).toHaveBeenCalled();
-        });
+      expect(result).toEqual({ error: 'DB error' });
+    });
+  });
 
-        it('should return error if use case fails', async () => {
-            (findByAdhesionUseCase.execute as jest.Mock).mockResolvedValue(Result.fail('DB error'));
+  describe('transfers', () => {
+    it('should return array of company primitives on success', async () => {
+      const mockCompanies = [{ toPrimitives: () => ({ name: 'Company X' }) }];
+      (findWithTransfersUseCase.execute as jest.Mock).mockResolvedValue(
+        Result.ok(mockCompanies),
+      );
 
-            const result = await controller.adhesion();
+      const result = await controller.transfers();
 
-            expect(result).toEqual({ error: 'DB error' });
-        });
+      expect(result).toEqual([{ name: 'Company X' }]);
+      expect(findWithTransfersUseCase.execute).toHaveBeenCalled();
     });
 
-    describe('transfers', () => {
-        it('should return array of company primitives on success', async () => {
-            const mockCompanies = [
-                { toPrimitives: () => ({ name: 'Company X' }) },
-            ];
-            (findWithTransfersUseCase.execute as jest.Mock).mockResolvedValue(Result.ok(mockCompanies));
+    it('should return error if use case fails', async () => {
+      (findWithTransfersUseCase.execute as jest.Mock).mockResolvedValue(
+        Result.fail('DB error'),
+      );
 
-            const result = await controller.transfers();
+      const result = await controller.transfers();
 
-            expect(result).toEqual([{ name: 'Company X' }]);
-            expect(findWithTransfersUseCase.execute).toHaveBeenCalled();
-        });
-
-        it('should return error if use case fails', async () => {
-            (findWithTransfersUseCase.execute as jest.Mock).mockResolvedValue(Result.fail('DB error'));
-
-            const result = await controller.transfers();
-
-            expect(result).toEqual({ error: 'DB error' });
-        });
+      expect(result).toEqual({ error: 'DB error' });
     });
+  });
 });

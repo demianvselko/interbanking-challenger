@@ -1,16 +1,16 @@
-import { Result } from "@context/shared/result";
+import { Result } from '@context/shared/result';
 
 export class CompanyTypeVO {
-    private constructor(private readonly type: 'PYME' | 'CORPORATIVA') { }
+  private constructor(private readonly type: 'PYME' | 'CORPORATIVA') {}
 
-    static create(type: string): Result<CompanyTypeVO> {
-        if (type !== 'PYME' && type !== 'CORPORATIVA') {
-            return Result.fail('Invalid company type');
-        }
-        return Result.ok(new CompanyTypeVO(type));
+  static create(type: string): Result<CompanyTypeVO> {
+    if (type !== 'PYME' && type !== 'CORPORATIVA') {
+      return Result.fail('Invalid company type');
     }
+    return Result.ok(new CompanyTypeVO(type));
+  }
 
-    getValue(): 'PYME' | 'CORPORATIVA' {
-        return this.type;
-    }
+  getValue(): 'PYME' | 'CORPORATIVA' {
+    return this.type;
+  }
 }

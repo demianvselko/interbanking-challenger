@@ -1,7 +1,7 @@
-import { Result } from "@context/shared/result";
+import { Result } from '@context/shared/result';
 
 export class CuitVO {
-  private constructor(private readonly value: string) { }
+  private constructor(private readonly value: string) {}
 
   static create(cuit: string): Result<CuitVO> {
     const normalized = cuit.replace(/-/g, '').trim();

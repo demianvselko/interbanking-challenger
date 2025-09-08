@@ -9,17 +9,17 @@ import { CompanyRepository } from '@context/ports/company.repository';
 import { TransferRepository } from '@context/ports/transfer.repository';
 
 @Module({
-    controllers: [CompanyController],
-    providers: [
-        CompanyRepositoryImpl,
-        TransferRepositoryImpl,
+  controllers: [CompanyController],
+  providers: [
+    CompanyRepositoryImpl,
+    TransferRepositoryImpl,
 
-        { provide: CompanyRepository, useExisting: CompanyRepositoryImpl },
-        { provide: TransferRepository, useExisting: TransferRepositoryImpl },
+    { provide: CompanyRepository, useExisting: CompanyRepositoryImpl },
+    { provide: TransferRepository, useExisting: TransferRepositoryImpl },
 
-        CreateCompanyUseCase,
-        FindCompaniesByAdhesionUseCase,
-        FindCompaniesWithTransfersUseCase,
-    ],
+    CreateCompanyUseCase,
+    FindCompaniesByAdhesionUseCase,
+    FindCompaniesWithTransfersUseCase,
+  ],
 })
-export class AppModule { }
+export class AppModule {}

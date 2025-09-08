@@ -1,20 +1,22 @@
-import { Company } from "context/domain/core/entities/company";
-import { AccountNumberVO } from "context/domain/core/value-objects/transfer/accountNumber";
-
+import { Company } from 'context/domain/core/entities/company';
+import { AccountNumberVO } from 'context/domain/core/value-objects/transfer/accountNumber';
 
 export class TransferValidator {
-
-    static validate(company: Company, debit: AccountNumberVO, credit: AccountNumberVO) {
-        if (!company.accounts.some(acc => acc.getValue() === debit.getValue())) {
-            throw new Error('Debit account does not belong to the company');
-        }
-
-        if (!company.accounts.some(acc => acc.getValue() === credit.getValue())) {
-            throw new Error('Credit account does not belong to the company');
-        }
-
-        if (debit.getValue() === credit.getValue()) {
-            throw new Error('Debit and credit accounts cannot be the same');
-        }
+  static validate(
+    company: Company,
+    debit: AccountNumberVO,
+    credit: AccountNumberVO,
+  ) {
+    if (!company.accounts.some((acc) => acc.getValue() === debit.getValue())) {
+      throw new Error('Debit account does not belong to the company');
     }
+
+    if (!company.accounts.some((acc) => acc.getValue() === credit.getValue())) {
+      throw new Error('Credit account does not belong to the company');
+    }
+
+    if (debit.getValue() === credit.getValue()) {
+      throw new Error('Debit and credit accounts cannot be the same');
+    }
+  }
 }
