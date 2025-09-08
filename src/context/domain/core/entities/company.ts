@@ -1,36 +1,59 @@
-import { CuitVO } from 'context/domain/core/value-objects/company/cuit';
-import { CompanyNameVO } from 'context/domain/core/value-objects/company/companyName';
-import { AdhesionDateVO } from 'context/domain/core/value-objects/company/adhesionDate';
 import { v4 as uuid4 } from 'uuid';
+import { CuitVO } from '../value-objects/company/cuit';
+import { CompanyNameVO } from '../value-objects/company/companyName';
+import { AdhesionDateVO } from '../value-objects/company/adhesionDate';
+import { AccountNumberVO } from '../value-objects/transfer/accountNumber';
+import { CompanyTypeVO } from '../value-objects/company/companyTypes';
+import { Result } from 'context/shraed/result';
+import { CompanyErrors } from 'context/domain/errors/company.errors';
 
 export class Company {
-  private readonly _id: string;
-  private readonly _cuit: CuitVO;
-  private readonly _name: CompanyNameVO;
-  private readonly _dateOfAddition: AdhesionDateVO;
-  private readonly _type: 'PYME' | 'CORPORATIVA';
-
   private constructor(
-    id: string,
-    cuit: CuitVO,
-    name: CompanyNameVO,
-    dateOfAddition: AdhesionDateVO,
-    type: 'PYME' | 'CORPORATIVA'
-  ) {
-    this._id = id;
-    this._cuit = cuit;
-    this._name = name;
-    this._dateOfAddition = dateOfAddition;
-    this._type = type;
-  }
+    private readonly _id: string,
+    private readonly _cuit: CuitVO,
+    private readonly _name: CompanyNameVO,
+    private readonly _dateOfAddition: AdhesionDateVO,
+    private readonly _type: CompanyTypeVO,
+    private readonly _accounts: AccountNumberVO[]
+  ) { }
+
+  get id(): string { return this._id; }
+  get cuit(): CuitVO { return this._cuit; }
+  get name(): CompanyNameVO { return this._name; }
+  get dateOfAddition(): AdhesionDateVO { return this._dateOfAddition; }
+  get type(): CompanyTypeVO { return this._type; }
+  get accounts(): AccountNumberVO[] { return this._accounts; }
 
   static create(
     cuit: CuitVO,
     name: CompanyNameVO,
-    type: 'PYME' | 'CORPORATIVA'
-  ): Company {
-    const now = new Date();
-    return new Company(uuid4(), cuit, name, new AdhesionDateVO(now), type);
+    type: CompanyTypeVO,
+    accounts: AccountNumberVO[] = []
+  ): Result<Company> {
+    const dateResult = AdhesionDateVO.create(new Date());
+    if (!dateResult.ok) return Result.fail(dateResult.error);
+
+    try {
+      const company = new Company(
+        uuid4(),
+        cuit,
+        name,
+        dateResult.value,
+        type,
+        accounts
+      );
+      return Result.ok(company);
+    } catch {
+      return Result.fail(CompanyErrors.INVALID_NAME);
+    }
+  }
+
+  addAccount(account: AccountNumberVO): Result<void> {
+    if (this._accounts.some(acc => acc.getValue() === account.getValue())) {
+      return Result.fail(CompanyErrors.DUPLICATE_ACCOUNT);
+    }
+    this._accounts.push(account);
+    return Result.ok(undefined);
   }
 
   toPrimitives() {
@@ -39,28 +62,8 @@ export class Company {
       cuit: this._cuit.getValue(),
       name: this._name.getValue(),
       dateOfAddition: this._dateOfAddition.toISOString(),
-      type: this._type,
+      type: this._type.getValue(),
+      accounts: this._accounts.map(acc => acc.getValue()),
     };
   }
-
-  get id(): string {
-    return this._id;
-  }
-
-  get cuit(): CuitVO {
-    return this._cuit;
-  }
-
-  get name(): CompanyNameVO {
-    return this._name;
-  }
-
-  get dateOfAddition(): AdhesionDateVO {
-    return this._dateOfAddition;
-  }
-
-  get type(): 'PYME' | 'CORPORATIVA' {
-    return this._type;
-  }
-
 }

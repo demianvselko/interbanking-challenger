@@ -24,7 +24,7 @@
     "baseUrl": "src",
     "paths": {
       "@core/*": [
-        "core/*"
+        "src/context/core/*"
       ],
       "@application/*": [
         "src/context/application/*"

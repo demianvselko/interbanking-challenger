@@ -1,14 +1,14 @@
+import { Result } from "context/shraed/result";
+
 export class CuitVO {
-  private readonly value: string;
+  private constructor(private readonly value: string) { }
 
-  constructor(cuit: string) {
+  static create(cuit: string): Result<CuitVO> {
     const normalized = cuit.replace(/-/g, '').trim();
-
     if (!/^\d{11}$/.test(normalized)) {
-      throw new Error('CUIT must have exactly 11 digits');
+      return Result.fail('CUIT must have exactly 11 digits');
     }
-
-    this.value = normalized;
+    return Result.ok(new CuitVO(normalized));
   }
 
   getValue(): string {

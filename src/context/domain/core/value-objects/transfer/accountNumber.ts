@@ -1,11 +1,13 @@
-export class AccountNumberVO {
-    private readonly value: string;
+import { Result } from "context/shraed/result";
 
-    constructor(value: string) {
+export class AccountNumberVO {
+    private constructor(private readonly value: string) { }
+
+    static create(value: string): Result<AccountNumberVO> {
         if (!/^[0-9]{10,20}$/.test(value)) {
-            throw new Error('Account number must be between 10 and 20 digits');
+            return Result.fail('Account number must be between 10 and 20 digits');
         }
-        this.value = value;
+        return Result.ok(new AccountNumberVO(value));
     }
 
     getValue(): string {
