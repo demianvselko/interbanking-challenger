@@ -1,0 +1,55 @@
+[
+    {
+        "id": "11111111111",
+        "cuit": "11111111111",
+        "name": "Empresa Alpha",
+        "type": "PYME",
+        "dateOfAddition": "2025-08-01T10:00:00.000Z",
+        "accounts": [
+            "11111111111",
+            "11111111112"
+        ]
+    },
+    {
+        "id": "22222222222",
+        "cuit": "22222222222",
+        "name": "Empresa Beta",
+        "type": "CORPORATIVA",
+        "dateOfAddition": "2025-08-15T15:30:00.000Z",
+        "accounts": [
+            "22222222221"
+        ]
+    },
+    {
+        "id": "33333333333",
+        "cuit": "33333333333",
+        "name": "Empresa Gamma",
+        "type": "PYME",
+        "dateOfAddition": "2025-07-20T09:45:00.000Z",
+        "accounts": [
+            "33333333331",
+            "33333333332"
+        ]
+    },
+    {
+        "id": "44444444444",
+        "cuit": "44444444444",
+        "name": "Empresa Delta",
+        "type": "CORPORATIVA",
+        "dateOfAddition": "2025-09-01T08:00:00.000Z",
+        "accounts": [
+            "44444444441"
+        ]
+    },
+    {
+        "id": "55555555555",
+        "cuit": "55555555555",
+        "name": "Empresa Epsilon",
+        "type": "PYME",
+        "dateOfAddition": "2025-09-05T12:00:00.000Z",
+        "accounts": [
+            "55555555551",
+            "55555555552"
+        ]
+    }
+]

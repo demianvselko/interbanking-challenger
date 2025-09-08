@@ -1,17 +1,16 @@
 import { Result } from "context/shraed/result";
 
-
 export class CompanyTypeVO {
-    private constructor(private readonly value: CompanyType) { }
+    private constructor(private readonly type: 'PYME' | 'CORPORATIVA') { }
 
-    static create(value: string): Result<CompanyTypeVO> {
-        if (value !== 'PYME' && value !== 'CORPORATIVA') {
-            return Result.fail('Company type must be PYME or CORPORATIVA');
+    static create(type: string): Result<CompanyTypeVO> {
+        if (type !== 'PYME' && type !== 'CORPORATIVA') {
+            return Result.fail('Invalid company type');
         }
-        return Result.ok(new CompanyTypeVO(value as CompanyType));
+        return Result.ok(new CompanyTypeVO(type));
     }
 
-    getValue(): CompanyType {
-        return this.value;
+    getValue(): 'PYME' | 'CORPORATIVA' {
+        return this.type;
     }
 }

@@ -28,14 +28,19 @@ export class Company {
     cuit: CuitVO,
     name: CompanyNameVO,
     type: CompanyTypeVO,
-    accounts: AccountNumberVO[] = []
+    accounts: AccountNumberVO[] = [],
+    id?: string,
+    dateOfAddition?: Date
   ): Result<Company> {
-    const dateResult = AdhesionDateVO.create(new Date());
+    const dateResult = dateOfAddition
+      ? AdhesionDateVO.create(dateOfAddition)
+      : AdhesionDateVO.create(new Date());
+
     if (!dateResult.ok) return Result.fail(dateResult.error);
 
     try {
       const company = new Company(
-        uuid4(),
+        id || uuid4(),
         cuit,
         name,
         dateResult.value,
