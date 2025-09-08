@@ -4,8 +4,8 @@ import { CompanyNameVO } from '../value-objects/company/companyName';
 import { AdhesionDateVO } from '../value-objects/company/adhesionDate';
 import { AccountNumberVO } from '../value-objects/transfer/accountNumber';
 import { CompanyTypeVO } from '../value-objects/company/companyTypes';
-import { Result } from 'context/shraed/result';
-import { CompanyErrors } from 'context/domain/errors/company.errors';
+import { Result } from '@context/shared/result';
+import { CompanyErrors } from '@context/domain/errors/company.errors';
 
 export class Company {
   private constructor(

@@ -1,7 +1,7 @@
 import { CompanyRepository } from 'context/ports/company.repository';
 import { Company } from 'context/domain/core/entities/company';
-import { Result } from 'context/shraed/result';
-import { normalizeError } from 'context/shraed/error.utils';
+import { Result } from '@context/shared/result';
+import { normalizeError } from '@context/shared/error.utils';
 import { Injectable } from 'interface/shared/dependencyInjection/injectable';
 
 @Injectable()

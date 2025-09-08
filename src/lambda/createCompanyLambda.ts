@@ -1,7 +1,7 @@
 import { CreateCompanyHttpRequest } from 'interface/http/dto/createCompany.http.dto';
 import { CreateCompanyUseCase } from 'application/company/useCases/createCompany.useCase';
 import { CompanyRepositoryImpl } from 'infrastructure/repositories/json/company.repository.impl';
-import { Result } from 'context/shraed/result';
+import { Result } from '@context/shared/result';
 
 export async function createCompanyHandler(
     event: CreateCompanyHttpRequest

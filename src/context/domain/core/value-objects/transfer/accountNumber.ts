@@ -1,4 +1,4 @@
-import { Result } from "context/shraed/result";
+import { Result } from "@context/shared/result";
 
 export class AccountNumberVO {
     private constructor(private readonly value: string) { }

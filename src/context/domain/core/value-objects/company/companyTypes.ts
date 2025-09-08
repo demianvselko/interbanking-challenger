@@ -1,4 +1,4 @@
-import { Result } from "context/shraed/result";
+import { Result } from "@context/shared/result";
 
 export class CompanyTypeVO {
     private constructor(private readonly type: 'PYME' | 'CORPORATIVA') { }
