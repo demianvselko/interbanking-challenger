@@ -67,3 +67,5 @@ Las entidades las he modelado un poco mejor, para que se asemejen mas a la reali
 la fecha de adhision la coloco al crear la entidad de la compania porque si.
 
 El endpoint de busqueda por el ultimo mes lo hice mas generico y por parametros le indicaria el rango de fechas
+
+No utilizo el cuit como id unico en la entidad de company porque he visto el caso de una empresa que cambio de cuit pero no de razon social y genero muchisimos errores en produccion,(nadie sabia que eso era posible y fue un cliente grande YPF).

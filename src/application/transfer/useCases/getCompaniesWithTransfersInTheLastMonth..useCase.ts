@@ -1,27 +1,33 @@
 import { CompanyRepository } from "context/ports/company.repository";
 import { TransferRepository } from "context/ports/transfer.repository";
 import { Company } from "context/domain/core/entities/company";
+import { normalizeError } from "context/shraed/error.utils";
+import { Result } from "context/shraed/result";
 
-export class GetCompaniesWithTransfersLastMonthUseCase {
+
+export class FindCompaniesWithTransfersUseCase {
     constructor(
-        private transferRepo: TransferRepository,
-        private companyRepo: CompanyRepository
+        private companyRepo: CompanyRepository,
+        private transferRepo: TransferRepository
     ) { }
 
-    async execute(): Promise<Company[]> {
-        const today = new Date();
-        const start = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-        const end = today;
+    async execute(lastMonth: boolean = true): Promise<Result<Company[]>> {
+        try {
+            const now = new Date();
+            const start = lastMonth
+                ? new Date(now.getFullYear(), now.getMonth() - 1, now.getDate())
+                : new Date(0);
+            const end = now;
 
-        const transfers = await this.transferRepo.findByDateRange(start, end);
-        const companyIds = Array.from(new Set(transfers.map(t => t.companyId)));
+            const transfers = await this.transferRepo.findByDateRange(start, end);
+            const companyIds = Array.from(
+                new Set(transfers.map(transfer => transfer.companyId))
+            );
 
-        const companies: Company[] = [];
-        for (const id of companyIds) {
-            const company = await this.companyRepo.findByCuit(id);
-            if (company) companies.push(company);
+            const companies = await this.companyRepo.findByIds(companyIds);
+            return Result.ok(companies);
+        } catch (err: unknown) {
+            return Result.fail(normalizeError(err, 'Failed to fetch companies with transfers'));
         }
-
-        return companies;
     }
 }
