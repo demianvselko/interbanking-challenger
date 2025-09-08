@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "fa77da8c-d5c7-44af-99bf-dd375c904cc5",
+		"name": "Companies API",
+		"description": "Collection for testing companies endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12682732"
+	},
+	"item": [
+		{
+			"name": "Create Company - PyME",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cuit\": \"66666666666\",\n  \"name\": \"Empresa Zeta\",\n  \"type\": \"PYME\",\n  \"accounts\": [\"66666666661\", \"66666666662\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/companies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Company - Corporativa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cuit\": \"77777777777\",\n  \"name\": \"Empresa Eta\",\n  \"type\": \"CORPORATIVA\",\n  \"accounts\": [\"77777777771\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/companies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Companies Adhered Last Month",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/companies/adhesion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"companies",
+						"adhesion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Companies with Transfers Last Month",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/companies/transfers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"companies",
+						"transfers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

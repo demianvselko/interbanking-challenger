@@ -1,0 +1,37 @@
+[
+    {
+        "companyId": "11111111111",
+        "debitAccount": "11111111111",
+        "creditAccount": "22222222222",
+        "amount": 1000,
+        "date": "2025-08-05T12:00:00.000Z"
+    },
+    {
+        "companyId": "22222222222",
+        "debitAccount": "22222222221",
+        "creditAccount": "11111111112",
+        "amount": 2500,
+        "date": "2025-08-20T14:30:00.000Z"
+    },
+    {
+        "companyId": "33333333333",
+        "debitAccount": "33333333331",
+        "creditAccount": "22222222222",
+        "amount": 1500,
+        "date": "2025-07-25T09:00:00.000Z"
+    },
+    {
+        "companyId": "44444444444",
+        "debitAccount": "44444444441",
+        "creditAccount": "33333333332",
+        "amount": 3000,
+        "date": "2025-09-02T10:15:00.000Z"
+    },
+    {
+        "companyId": "55555555555",
+        "debitAccount": "55555555551",
+        "creditAccount": "44444444441",
+        "amount": 1200,
+        "date": "2025-09-06T16:45:00.000Z"
+    }
+]

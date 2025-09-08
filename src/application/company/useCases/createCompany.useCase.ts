@@ -6,8 +6,8 @@ import { CuitVO } from 'context/domain/core/value-objects/company/cuit';
 import { CompanyNameVO } from 'context/domain/core/value-objects/company/companyName';
 import { CompanyTypeVO } from 'context/domain/core/value-objects/company/companyTypes';
 import { AccountNumberVO } from 'context/domain/core/value-objects/transfer/accountNumber';
-import { CompanyErrors } from 'context/domain/errors/company.errors';
-
+import { Injectable } from 'interface/shared/dependencyInjection/injectable';
+@Injectable()
 export class CreateCompanyUseCase {
     constructor(private companyRepo: CompanyRepository) { }
 
@@ -43,3 +43,4 @@ export class CreateCompanyUseCase {
         return Result.ok(company);
     }
 }
+
