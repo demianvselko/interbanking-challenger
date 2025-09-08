@@ -1,3 +1,3 @@
-import { Injectable as NestJsInjectable } from "@nestjs/common";
+import { Injectable as NestJsInjectable } from '@nestjs/common';
 
 export const Injectable = NestJsInjectable;

@@ -23,21 +23,18 @@
     "noFallthroughCasesInSwitch": false,
     "baseUrl": "src",
     "paths": {
-      "@core/*": [
-        "src/context/core/*"
-      ],
       "@application/*": [
-        "src/context/application/*"
+        "application/*"
+      ],
+      "@context/*": [
+        "context/*"
       ],
       "@infrastructure/*": [
-        "src/context/infrastructure/*"
+        "infrastructure/*"
       ],
-      "@framework/*": [
-        "src/context/framework/*"
+      "@interface/*": [
+        "interface/*"
       ],
-      "@shared/*": [
-        "src/context/shared/*"
-      ]
     }
   }
 }

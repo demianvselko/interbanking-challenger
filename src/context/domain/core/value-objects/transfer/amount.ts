@@ -1,7 +1,7 @@
-import { Result } from "context/shraed/result";
+import { Result } from '@context/shared/result';
 
 export class AmountVO {
-  private constructor(private readonly value: number) { }
+  private constructor(private readonly value: number) {}
   private static readonly MAX = 1_000_000;
 
   static create(value: number): Result<AmountVO> {

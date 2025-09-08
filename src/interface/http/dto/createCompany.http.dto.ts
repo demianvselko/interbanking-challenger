@@ -1,21 +1,28 @@
-import { IsString, IsNotEmpty, IsOptional, IsArray, IsIn, MaxLength } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsOptional,
+  IsArray,
+  IsIn,
+  MaxLength,
+} from 'class-validator';
 
 export class CreateCompanyHttpRequest {
-    @IsString()
-    @IsNotEmpty()
-    @MaxLength(11)
-    cuit!: string;
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(11)
+  cuit!: string;
 
-    @IsString()
-    @IsNotEmpty()
-    name!: string;
+  @IsString()
+  @IsNotEmpty()
+  name!: string;
 
-    @IsString()
-    @IsIn(['PYME', 'CORPORATIVA'])
-    type!: 'PYME' | 'CORPORATIVA';
+  @IsString()
+  @IsIn(['PYME', 'CORPORATIVA'])
+  type!: 'PYME' | 'CORPORATIVA';
 
-    @IsOptional()
-    @IsArray()
-    @IsString({ each: true })
-    accounts?: string[];
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  accounts?: string[];
 }

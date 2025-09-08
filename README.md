@@ -47,11 +47,7 @@ $ npm run start:prod
 # unit tests
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
 ```
 
 ## License
@@ -73,3 +69,4 @@ No utilizo el cuit como id unico en la entidad de company porque he visto el cas
 Los enpoints deben estar protegidos con jwt.
 
 Los test no los genere yo, solo la estructura de ellos.
+

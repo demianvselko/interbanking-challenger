@@ -1,8 +1,8 @@
 export interface CompanyDTO {
-    id?: string;
-    cuit: string;
-    name: string;
-    type: 'PYME' | 'CORPORATIVA';
-    accounts?: string[];
-    dateOfAddition: string;
+  id?: string;
+  cuit: string;
+  name: string;
+  type: 'PYME' | 'CORPORATIVA';
+  accounts?: string[];
+  dateOfAddition: string;
 }
