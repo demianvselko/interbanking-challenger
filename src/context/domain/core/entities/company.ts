@@ -3,13 +3,14 @@ import { CuitVO } from '../value-objects/company/cuit';
 import { CompanyNameVO } from '../value-objects/company/companyName';
 import { AdhesionDateVO } from '../value-objects/company/adhesionDate';
 import { AccountNumberVO } from '../value-objects/transfer/accountNumber';
+import { CompanyTypeVO } from '../value-objects/company/companyTypes';
 
 export class Company {
   private readonly _id: string;
   private readonly _cuit: CuitVO;
   private readonly _name: CompanyNameVO;
   private readonly _dateOfAddition: AdhesionDateVO;
-  private readonly _type: 'PYME' | 'CORPORATIVA';
+  private readonly _type: CompanyTypeVO;
   private readonly _accounts: AccountNumberVO[];
 
   private constructor(
@@ -17,7 +18,7 @@ export class Company {
     cuit: CuitVO,
     name: CompanyNameVO,
     dateOfAddition: AdhesionDateVO,
-    type: 'PYME' | 'CORPORATIVA',
+    type: CompanyTypeVO,
     accounts: AccountNumberVO[]
   ) {
     this._id = id;
@@ -32,13 +33,13 @@ export class Company {
   get cuit(): CuitVO { return this._cuit; }
   get name(): CompanyNameVO { return this._name; }
   get dateOfAddition(): AdhesionDateVO { return this._dateOfAddition; }
-  get type(): 'PYME' | 'CORPORATIVA' { return this._type; }
+  get type(): CompanyTypeVO { return this._type; }
   get accounts(): AccountNumberVO[] { return this._accounts; }
 
   static create(
     cuit: CuitVO,
     name: CompanyNameVO,
-    type: 'PYME' | 'CORPORATIVA',
+    type: CompanyTypeVO,
     accounts: AccountNumberVO[] = []
   ): Company {
     return new Company(

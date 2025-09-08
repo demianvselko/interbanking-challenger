@@ -65,3 +65,5 @@ Las transferencias pueden ser a futuro.
 Las entidades las he modelado un poco mejor, para que se asemejen mas a la realidad, pero no hare lo mismo con los repositories para no desviarme completamente del mvp.
 
 la fecha de adhision la coloco al crear la entidad de la compania porque si.
+
+El endpoint de busqueda por el ultimo mes lo hice mas generico y por parametros le indicaria el rango de fechas
