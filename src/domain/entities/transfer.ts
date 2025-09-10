@@ -1,8 +1,9 @@
 import { v4 as uuid4 } from 'uuid';
-import { AmountVO } from '../value-objects/transfer/amount';
-import { AccountNumberVO } from '../value-objects/transfer/accountNumber';
-import { Result } from '@context/shared/result';
-import { TransferErrors } from '@context/domain/errors/transfer.errors';
+
+import { TransferErrors } from 'domain/errors/transfer.errors';
+import { Result } from '@domain/shared/result';
+import { AccountNumberVO } from '@domain/valueObjects/transfer/accountNumber';
+import { AmountVO } from '@domain/valueObjects/transfer/amount';
 
 export class Transfer {
   private constructor(
@@ -12,7 +13,7 @@ export class Transfer {
     private readonly _creditAccount: AccountNumberVO,
     private readonly _amount: AmountVO,
     private readonly _date: Date,
-  ) {}
+  ) { }
 
   get id(): string {
     return this._id;

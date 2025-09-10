@@ -5,21 +5,26 @@ import { FindCompaniesByAdhesionUseCase } from '@application/company/useCases/ge
 import { FindCompaniesWithTransfersUseCase } from '@application/company/useCases/getCompaniesWithTransfersInTheLastMonth.useCase';
 import { CompanyRepositoryImpl } from '@infrastructure/repositories/json/company.repository.impl';
 import { TransferRepositoryImpl } from '@infrastructure/repositories/json/transfer.repository.impl';
-import { CompanyRepository } from '@context/ports/company.repository';
-import { TransferRepository } from '@context/ports/transfer.repository';
+import { CompanyRepository } from '@domain/ports/company.repository';
+import { TransferRepository } from '@domain/ports/transfer.repository';
+
+
+import { PrismaTransferRepositoryImpl } from '@infrastructure/repositories/prisma/transfer.repository.impl';
+import { CompanyPrismaRepositoryImpl } from '@infrastructure/repositories/prisma/company.repository.impl';
+
 
 @Module({
   controllers: [CompanyController],
   providers: [
-    CompanyRepositoryImpl,
-    TransferRepositoryImpl,
+    CompanyPrismaRepositoryImpl,
+    PrismaTransferRepositoryImpl,
 
-    { provide: CompanyRepository, useExisting: CompanyRepositoryImpl },
-    { provide: TransferRepository, useExisting: TransferRepositoryImpl },
+    { provide: CompanyRepository, useExisting: CompanyPrismaRepositoryImpl },
+    { provide: TransferRepository, useExisting: PrismaTransferRepositoryImpl },
 
     CreateCompanyUseCase,
     FindCompaniesByAdhesionUseCase,
     FindCompaniesWithTransfersUseCase,
   ],
 })
-export class AppModule {}
+export class AppModule { }

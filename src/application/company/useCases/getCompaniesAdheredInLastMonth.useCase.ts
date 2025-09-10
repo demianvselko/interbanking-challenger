@@ -1,12 +1,13 @@
-import { CompanyRepository } from '@context/ports/company.repository';
-import { Company } from '@context/domain/core/entities/company';
-import { Result } from '@context/shared/result';
-import { normalizeError } from '@context/shared/error.utils';
+
+import { Company } from '@domain/entities/company';
+import { CompanyRepository } from '@domain/ports/company.repository';
+import { normalizeError } from '@domain/shared/error.utils';
+import { Result } from '@domain/shared/result';
 import { Injectable } from '@interface/shared/dependencyInjection/injectable';
 
 @Injectable()
 export class FindCompaniesByAdhesionUseCase {
-  constructor(private companyRepo: CompanyRepository) {}
+  constructor(private companyRepo: CompanyRepository) { }
 
   async execute(lastMonth: boolean = true): Promise<Result<Company[]>> {
     try {

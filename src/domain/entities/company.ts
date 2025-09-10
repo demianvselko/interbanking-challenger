@@ -1,11 +1,12 @@
 import { v4 as uuid4 } from 'uuid';
-import { CuitVO } from '../value-objects/company/cuit';
-import { CompanyNameVO } from '../value-objects/company/companyName';
-import { AdhesionDateVO } from '../value-objects/company/adhesionDate';
-import { AccountNumberVO } from '../value-objects/transfer/accountNumber';
-import { CompanyTypeVO } from '../value-objects/company/companyTypes';
-import { Result } from '@context/shared/result';
-import { CompanyErrors } from '@context/domain/errors/company.errors';
+
+import { CompanyErrors } from 'domain/errors/company.errors';
+import { Result } from 'domain/shared/result';
+import { AdhesionDateVO } from '@domain/valueObjects/company/adhesionDate';
+import { CompanyNameVO } from '@domain/valueObjects/company/companyName';
+import { CompanyTypeVO } from '@domain/valueObjects/company/companyTypes';
+import { CuitVO } from '@domain/valueObjects/company/cuit';
+import { AccountNumberVO } from '@domain/valueObjects/transfer/accountNumber';
 
 export class Company {
   private constructor(
@@ -15,7 +16,7 @@ export class Company {
     private readonly _dateOfAddition: AdhesionDateVO,
     private readonly _type: CompanyTypeVO,
     private readonly _accounts: AccountNumberVO[],
-  ) {}
+  ) { }
 
   get id(): string {
     return this._id;

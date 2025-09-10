@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CompanyController } from '../controllers/company.controller';
 import { CreateCompanyUseCase } from '@application/company/useCases/createCompany.useCase';
 import { FindCompaniesByAdhesionUseCase } from '@application/company/useCases/getCompaniesAdheredInLastMonth.useCase';
 import { FindCompaniesWithTransfersUseCase } from '@application/company/useCases/getCompaniesWithTransfersInTheLastMonth.useCase';
-import { Result } from '@context/shared/result';
+import { Result } from '@domain/shared/result';
+import { CompanyController } from '@interface/http/controllers/company.controller';
 
 describe('CompanyController', () => {
   let controller: CompanyController;

@@ -1,15 +1,11 @@
-import { Company } from '@context/domain/core/entities/company';
-import { CompanyNameVO } from '@context/domain/core/value-objects/company/companyName';
-import { CompanyTypeVO } from '@context/domain/core/value-objects/company/companyTypes';
-import { CuitVO } from '@context/domain/core/value-objects/company/cuit';
-import { AccountNumberVO } from '@context/domain/core/value-objects/transfer/accountNumber';
-import { CompanyRepository } from '@context/ports/company.repository';
-import { Result } from '@context/shared/result';
 import { Injectable } from '@interface/shared/dependencyInjection/injectable';
 import { CreateCompanyRequest } from '../dto/createCompany.dto';
+import { Company } from 'domain/entities/company';
+import { CompanyRepository } from 'domain/ports/company.repository';
+import { Result } from 'domain/shared/result';
 @Injectable()
 export class CreateCompanyUseCase {
-  constructor(private companyRepo: CompanyRepository) {}
+  constructor(private companyRepo: CompanyRepository) { }
 
   async execute(request: CreateCompanyRequest): Promise<Result<Company>> {
     const cuitResult = CuitVO.create(request.cuit);

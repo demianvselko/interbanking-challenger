@@ -1,5 +1,6 @@
-import { Company } from 'context/domain/core/entities/company';
-import { AccountNumberVO } from 'context/domain/core/value-objects/transfer/accountNumber';
+import { Company } from "@domain/entities/company";
+import { AccountNumberVO } from "@domain/valueObjects/transfer/accountNumber";
+
 
 export class TransferValidator {
   static validate(

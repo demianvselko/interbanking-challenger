@@ -1,4 +1,4 @@
-import { Company } from '../domain/core/entities/company';
+import { Company } from "@domain/entities/company";
 
 export abstract class CompanyRepository {
   abstract save(company: Company): Promise<void>;
