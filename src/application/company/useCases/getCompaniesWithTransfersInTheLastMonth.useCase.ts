@@ -1,8 +1,9 @@
-import { CompanyRepository } from '@context/ports/company.repository';
-import { TransferRepository } from '@context/ports/transfer.repository';
-import { Company } from '@context/domain/core/entities/company';
-import { Result } from '@context/shared/result';
-import { normalizeError } from '@context/shared/error.utils';
+
+import { Company } from '@domain/entities/company';
+import { CompanyRepository } from '@domain/ports/company.repository';
+import { TransferRepository } from '@domain/ports/transfer.repository';
+import { normalizeError } from '@domain/shared/error.utils';
+import { Result } from '@domain/shared/result';
 import { Injectable } from '@interface/shared/dependencyInjection/injectable';
 
 @Injectable()
@@ -10,7 +11,7 @@ export class FindCompaniesWithTransfersUseCase {
   constructor(
     private companyRepo: CompanyRepository,
     private transferRepo: TransferRepository,
-  ) {}
+  ) { }
 
   async execute(lastMonth: boolean = true): Promise<Result<Company[]>> {
     try {

@@ -1,9 +1,10 @@
-import { CompanyRepository } from '@context/ports/company.repository';
-import { Company } from '@context/domain/core/entities/company';
-import { CuitVO } from '@context/domain/core/value-objects/company/cuit';
-import { CompanyNameVO } from '@context/domain/core/value-objects/company/companyName';
-import { CompanyTypeVO } from '@context/domain/core/value-objects/company/companyTypes';
-import { AccountNumberVO } from '@context/domain/core/value-objects/transfer/accountNumber';
+
+import { Company } from '@domain/entities/company';
+import { CompanyRepository } from '@domain/ports/company.repository';
+import { CompanyNameVO } from '@domain/valueObjects/company/companyName';
+import { CompanyTypeVO } from '@domain/valueObjects/company/companyTypes';
+import { CuitVO } from '@domain/valueObjects/company/cuit';
+import { AccountNumberVO } from '@domain/valueObjects/transfer/accountNumber';
 import { loadJsonData } from '@infrastructure/utils/jsonLoader';
 import { CompanyDTO } from '@interface/http/controllers/companyDTO';
 

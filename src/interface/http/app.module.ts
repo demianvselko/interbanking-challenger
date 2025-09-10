@@ -1,25 +1,32 @@
 import { Module } from '@nestjs/common';
-import { CompanyController } from './controllers/company.controller';
+
+
+import { CompanyRepository } from '@domain/ports/company.repository';
+import { TransferRepository } from '@domain/ports/transfer.repository';
+
+import { CompanyPrismaRepositoryImpl } from '@infrastructure/repositories/prisma/company.repository.impl';
+import { PrismaTransferRepositoryImpl } from '@infrastructure/repositories/prisma/transfer.repository.impl';
+
 import { CreateCompanyUseCase } from '@application/company/useCases/createCompany.useCase';
 import { FindCompaniesByAdhesionUseCase } from '@application/company/useCases/getCompaniesAdheredInLastMonth.useCase';
 import { FindCompaniesWithTransfersUseCase } from '@application/company/useCases/getCompaniesWithTransfersInTheLastMonth.useCase';
-import { CompanyRepositoryImpl } from '@infrastructure/repositories/json/company.repository.impl';
-import { TransferRepositoryImpl } from '@infrastructure/repositories/json/transfer.repository.impl';
-import { CompanyRepository } from '@context/ports/company.repository';
-import { TransferRepository } from '@context/ports/transfer.repository';
+import { AuthModule } from '@infrastructure/auth/auth.module';
+import { AuthController } from './controllers/auth.controller';
+import { CompanyController } from './controllers/company.controller';
 
 @Module({
-  controllers: [CompanyController],
+  imports: [AuthModule],
+  controllers: [CompanyController, AuthController],
   providers: [
-    CompanyRepositoryImpl,
-    TransferRepositoryImpl,
+    CompanyPrismaRepositoryImpl,
+    PrismaTransferRepositoryImpl,
 
-    { provide: CompanyRepository, useExisting: CompanyRepositoryImpl },
-    { provide: TransferRepository, useExisting: TransferRepositoryImpl },
+    { provide: CompanyRepository, useExisting: CompanyPrismaRepositoryImpl },
+    { provide: TransferRepository, useExisting: PrismaTransferRepositoryImpl },
 
     CreateCompanyUseCase,
     FindCompaniesByAdhesionUseCase,
     FindCompaniesWithTransfersUseCase,
   ],
 })
-export class AppModule {}
+export class AppModule { }

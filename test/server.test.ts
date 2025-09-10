@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from '../src/interface/http/app.module';
 import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { ValidationPipe } from '@nestjs/common';
-import { bootstrap } from './server';
+import { bootstrap } from '../src/interface/http/server';
 
 jest.mock('@nestjs/core', () => ({
   NestFactory: { create: jest.fn() },

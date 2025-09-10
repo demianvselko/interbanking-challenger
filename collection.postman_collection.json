@@ -2,19 +2,23 @@
 	"info": {
 		"_postman_id": "fa77da8c-d5c7-44af-99bf-dd375c904cc5",
 		"name": "Companies API",
-		"description": "Collection for testing companies endpoints",
+		"description": "Collection for testing companies endpoints with JWT",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12682732"
 	},
 	"item": [
 		{
-			"name": "Create Company - PyME",
+			"name": "Create Company - PyME (Auth OK)",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}"
 					}
 				],
 				"body": {
@@ -32,17 +36,20 @@
 						"companies"
 					]
 				}
-			},
-			"response": []
+			}
 		},
 		{
-			"name": "Create Company - Corporativa",
+			"name": "Create Company - Corporativa (Auth OK)",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}"
 					}
 				],
 				"body": {
@@ -60,11 +67,58 @@
 						"companies"
 					]
 				}
-			},
-			"response": []
+			}
 		},
 		{
-			"name": "Get Companies Adhered Last Month",
+			"name": "Get Companies Adhered Last Month (Auth OK)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/companies/adhesion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"companies",
+						"adhesion"
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Companies with Transfers Last Month (Auth OK)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/companies/transfers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"companies",
+						"transfers"
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Companies Adhered Last Month (NO Auth - debe fallar)",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -80,28 +134,13 @@
 						"adhesion"
 					]
 				}
-			},
-			"response": []
-		},
+			}
+		}
+	],
+	"variable": [
 		{
-			"name": "Get Companies with Transfers Last Month",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/companies/transfers",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"companies",
-						"transfers"
-					]
-				}
-			},
-			"response": []
+			"key": "jwt_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 		}
 	]
 }

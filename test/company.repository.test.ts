@@ -1,4 +1,4 @@
-import { Company } from '../domain/core/entities/company';
+import { Company } from '@domain/entities/company';
 import { MockCompanyRepository } from '../../../__mocks__/company.respository.mock';
 
 describe('CompanyRepository (abstract)', () => {

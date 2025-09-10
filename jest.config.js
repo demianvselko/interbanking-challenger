@@ -1,12 +1,12 @@
 module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'node',
-    rootDir: 'src',
+    rootDir: '.',
     testMatch: ['**/*.spec.ts', '**/*.test.ts'],
     moduleFileExtensions: ['ts', 'js', 'json'],
     moduleNameMapper: {
         '^@application/(.*)$': '<rootDir>/application/$1',
-        '^@context/(.*)$': '<rootDir>/context/$1',
+        '^@domain/(.*)$': '<rootDir>/domain/$1',
         '^@infrastructure/(.*)$': '<rootDir>/infrastructure/$1',
         '^@interface/(.*)$': '<rootDir>/interface/$1',
         '^@shared/(.*)$': '<rootDir>/shared/$1'

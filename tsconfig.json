@@ -26,8 +26,8 @@
       "@application/*": [
         "application/*"
       ],
-      "@context/*": [
-        "context/*"
+      "@domain/*": [
+        "domain/*"
       ],
       "@infrastructure/*": [
         "infrastructure/*"
