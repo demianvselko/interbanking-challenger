@@ -1,20 +1,22 @@
 import { Module } from '@nestjs/common';
-import { CompanyController } from './controllers/company.controller';
-import { CreateCompanyUseCase } from '@application/company/useCases/createCompany.useCase';
-import { FindCompaniesByAdhesionUseCase } from '@application/company/useCases/getCompaniesAdheredInLastMonth.useCase';
-import { FindCompaniesWithTransfersUseCase } from '@application/company/useCases/getCompaniesWithTransfersInTheLastMonth.useCase';
-import { CompanyRepositoryImpl } from '@infrastructure/repositories/json/company.repository.impl';
-import { TransferRepositoryImpl } from '@infrastructure/repositories/json/transfer.repository.impl';
+
+
 import { CompanyRepository } from '@domain/ports/company.repository';
 import { TransferRepository } from '@domain/ports/transfer.repository';
 
-
-import { PrismaTransferRepositoryImpl } from '@infrastructure/repositories/prisma/transfer.repository.impl';
 import { CompanyPrismaRepositoryImpl } from '@infrastructure/repositories/prisma/company.repository.impl';
+import { PrismaTransferRepositoryImpl } from '@infrastructure/repositories/prisma/transfer.repository.impl';
 
+import { CreateCompanyUseCase } from '@application/company/useCases/createCompany.useCase';
+import { FindCompaniesByAdhesionUseCase } from '@application/company/useCases/getCompaniesAdheredInLastMonth.useCase';
+import { FindCompaniesWithTransfersUseCase } from '@application/company/useCases/getCompaniesWithTransfersInTheLastMonth.useCase';
+import { AuthModule } from '@infrastructure/auth/auth.module';
+import { AuthController } from './controllers/auth.controller';
+import { CompanyController } from './controllers/company.controller';
 
 @Module({
-  controllers: [CompanyController],
+  imports: [AuthModule],
+  controllers: [CompanyController, AuthController],
   providers: [
     CompanyPrismaRepositoryImpl,
     PrismaTransferRepositoryImpl,

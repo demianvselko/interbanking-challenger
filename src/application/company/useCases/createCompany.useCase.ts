@@ -3,6 +3,10 @@ import { CreateCompanyRequest } from '../dto/createCompany.dto';
 import { Company } from 'domain/entities/company';
 import { CompanyRepository } from 'domain/ports/company.repository';
 import { Result } from 'domain/shared/result';
+import { CompanyNameVO } from '@domain/valueObjects/company/companyName';
+import { CompanyTypeVO } from '@domain/valueObjects/company/companyTypes';
+import { CuitVO } from '@domain/valueObjects/company/cuit';
+import { AccountNumberVO } from '@domain/valueObjects/transfer/accountNumber';
 @Injectable()
 export class CreateCompanyUseCase {
   constructor(private companyRepo: CompanyRepository) { }
