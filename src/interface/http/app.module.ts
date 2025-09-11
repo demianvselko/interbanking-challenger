@@ -14,10 +14,11 @@ import { AuthModule } from '@infrastructure/auth/auth.module';
 import { AuthController } from './controllers/auth.controller';
 import { CompanyController } from './controllers/company.controller';
 import { ConfigModule } from '@nestjs/config';
+import { HealthController } from './controllers/health.controller';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), AuthModule],
-  controllers: [CompanyController, AuthController],
+  controllers: [CompanyController, AuthController, HealthController],
   providers: [
     CompanyPrismaRepositoryImpl,
     PrismaTransferRepositoryImpl,

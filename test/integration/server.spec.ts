@@ -24,8 +24,8 @@ jest.mock('@nestjs/common', () => {
         })),
     };
 });
-jest.mock('../../src/config/swagger.config');
-jest.mock('../../src/config/pipes.config');
+jest.mock('@interface/http/config/swagger.config');
+jest.mock('@interface/http/config/pipes.config');
 
 
 describe('bootstrap (integration)', () => {

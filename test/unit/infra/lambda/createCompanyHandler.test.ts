@@ -1,12 +1,11 @@
 import { CreateCompanyUseCase } from '@application/company/useCases/createCompany.useCase';
-import { CompanyRepositoryImpl } from '@infrastructure/repositories/json/company.repository.impl';
 import { Result } from '@domain/shared/result';
 import { responseLambda } from '../../../../infra/utils/lambdaResponse';
 import { createCompanyHandler } from '../../../../infra/lambda/createCompanyLambda';
 
 jest.mock('@application/company/useCases/createCompany.useCase');
 jest.mock('@infrastructure/repositories/json/company.repository.impl');
-jest.mock('@interface/http/utils/lambdaResponse');
+jest.mock('../../../../infra/utils/lambdaResponse');
 
 describe('createCompanyHandler (unit)', () => {
     let mockExecute: jest.Mock;

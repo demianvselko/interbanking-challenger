@@ -1,7 +1,6 @@
 import { Transfer } from '@domain/entities/transfer';
 import { TransferRepository } from '@domain/ports/transfer.repository';
-import { AccountNumberVO } from '@domain/valueObjects/transfer/accountNumber';
-import { AmountVO } from '@domain/valueObjects/transfer/amount';
+import { AccountNumberVO, AmountVO } from '@domain/valueObjects/transfer';
 import { prisma } from '@infrastructure/prisma/prisma.client';
 
 export class PrismaTransferRepositoryImpl implements TransferRepository {

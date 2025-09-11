@@ -1,10 +1,7 @@
 import { CompanyRepository } from '@domain/ports/company.repository';
 import { Company } from '@domain/entities/company';
-import { CuitVO } from '@domain/valueObjects/company/cuit';
-import { CompanyNameVO } from '@domain/valueObjects/company/companyName';
-import { CompanyTypeVO } from '@domain/valueObjects/company/companyTypes';
-import { AccountNumberVO } from '@domain/valueObjects/transfer/accountNumber';
-import { AdhesionDateVO } from '@domain/valueObjects/company/adhesionDate';
+import { CuitVO, CompanyNameVO, CompanyTypeVO, AdhesionDateVO } from '@domain/valueObjects/company';
+import { AccountNumberVO } from '@domain/valueObjects/transfer';
 import { prisma } from '@infrastructure/prisma/prisma.client';
 
 export class CompanyPrismaRepositoryImpl implements CompanyRepository {
