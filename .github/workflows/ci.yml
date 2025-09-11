@@ -28,21 +28,21 @@ jobs:
     - name: Generar Prisma client
       run: npx prisma generate
 
-    - name: Prepare test DB
+    - name: Crear test para DB
       env:
         DATABASE_URL: "file:./test.db"
       run: npx prisma db push
 
-    - name: Run unit tests
+    - name: unit tests
       env:
         NODE_ENV: test
         JWT_SECRET: "dont_hack_me_please"
         AUTH_USER: "hackme"
         AUTH_PASS: "please"
         DATABASE_URL: "file:./test.db"
-      run: npm run test:unit
+      run: npm run test
 
-    - name: Run e2e tests
+    - name: e2e tests
       env:
         NODE_ENV: test
         JWT_SECRET: "dont_hack_me_please"
