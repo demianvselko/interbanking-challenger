@@ -47,3 +47,7 @@ Búsqueda por fechas (todas se manejaran con el huso horario de UTF-0, ya que me
 Company ID
   No se usa el CUIT como identificador único.
   Esto evita problemas en casos donde una empresa cambia de CUIT sin cambiar razón social (situación real que suele causar errores en producción).
+
+Entiendo que esto cubre los detalles que me han pedido, antes cualquier dudas sobre el codigo podemos hablar por meet.
+
+ Si necesitan mas cambios, pueden solicitarlos.
