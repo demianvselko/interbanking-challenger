@@ -1,6 +1,6 @@
-import { Company } from '@context/domain/core/entities/company';
-import { MockCompanyRepository } from '../../../../__mocks__/company.respository.mock';
-import { FindCompaniesByAdhesionUseCase } from './getCompaniesAdheredInLastMonth.useCase';
+import { FindCompaniesByAdhesionUseCase } from "@application/company/useCases/getCompaniesAdheredInLastMonth.useCase";
+import { MockCompanyRepository } from "../../../../__mocks__/company.respository.mock";
+import { Company } from "@domain/entities/company";
 
 describe('FindCompaniesByAdhesionUseCase', () => {
   let repo: MockCompanyRepository;

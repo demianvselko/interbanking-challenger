@@ -1,5 +1,5 @@
 import { Company } from '@domain/entities/company';
-import { MockCompanyRepository } from '../../../__mocks__/company.respository.mock';
+import { MockCompanyRepository } from '../__mocks__/company.respository.mock';
 
 describe('CompanyRepository (abstract)', () => {
   let repo: MockCompanyRepository;

@@ -1,7 +1,7 @@
-import { Company } from '@context/domain/core/entities/company';
-import { MockCompanyRepository } from '../../../../__mocks__/company.respository.mock';
-import { MockTransferRepository } from '../../../../__mocks__/transfer.repository.mock';
-import { FindCompaniesWithTransfersUseCase } from './getCompaniesWithTransfersInTheLastMonth.useCase';
+import { FindCompaniesWithTransfersUseCase } from "@application/company/useCases/getCompaniesWithTransfersInTheLastMonth.useCase";
+import { Company } from "@prisma/client";
+import { MockCompanyRepository } from "../../../../__mocks__/company.respository.mock";
+import { MockTransferRepository } from "../../../../__mocks__/transfer.repository.mock";
 
 describe('FindCompaniesWithTransfersUseCase', () => {
   let companyRepo: MockCompanyRepository;

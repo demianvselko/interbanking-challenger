@@ -1,5 +1,6 @@
-import { Transfer } from '../domain/core/entities/transfer';
-import { MockTransferRepository } from '../../../__mocks__/transfer.repository.mock';
+import { Transfer } from "@domain/entities/transfer";
+import { MockTransferRepository } from "../__mocks__/transfer.repository.mock";
+
 
 describe('TransferRepository (abstract)', () => {
   let repo: MockTransferRepository;

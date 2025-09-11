@@ -1,11 +1,12 @@
-import { Company } from '@context/domain/core/entities/company';
-import { CompanyNameVO } from '@context/domain/core/value-objects/company/companyName';
-import { CompanyTypeVO } from '@context/domain/core/value-objects/company/companyTypes';
-import { CuitVO } from '@context/domain/core/value-objects/company/cuit';
-import { AccountNumberVO } from '@context/domain/core/value-objects/transfer/accountNumber';
-import { Result } from '@context/shared/result';
-import { MockCompanyRepository } from '../../../../__mocks__/company.respository.mock';
-import { CreateCompanyUseCase } from './createCompany.useCase';
+import { CreateCompanyUseCase } from "@application/company/useCases/createCompany.useCase";
+import { Company } from "@domain/entities/company";
+import { Result } from "@domain/shared/result";
+import { CompanyNameVO } from "@domain/valueObjects/company/companyName";
+import { CompanyTypeVO } from "@domain/valueObjects/company/companyTypes";
+import { CuitVO } from "@domain/valueObjects/company/cuit";
+import { AccountNumberVO } from "@domain/valueObjects/transfer/accountNumber";
+import { MockCompanyRepository } from "../../../../__mocks__/company.respository.mock";
+
 
 describe('CreateCompanyUseCase', () => {
   let repo: MockCompanyRepository;
