@@ -13,9 +13,10 @@ import { FindCompaniesWithTransfersUseCase } from '@application/company/useCases
 import { AuthModule } from '@infrastructure/auth/auth.module';
 import { AuthController } from './controllers/auth.controller';
 import { CompanyController } from './controllers/company.controller';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [AuthModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), AuthModule],
   controllers: [CompanyController, AuthController],
   providers: [
     CompanyPrismaRepositoryImpl,

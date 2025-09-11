@@ -1,5 +1,6 @@
-import { Company } from "@context/domain/core/entities/company";
-import { CompanyRepository } from "@context/ports/company.repository";
+import { Company } from "@domain/entities/company";
+import { CompanyRepository } from "@domain/ports/company.repository";
+
 
 export class MockCompanyRepository extends CompanyRepository {
     save = jest.fn<Promise<void>, [Company]>();

@@ -1,6 +1,6 @@
+import { loadJsonData } from '@infrastructure/utils/jsonLoader';
 import * as fs from 'fs';
 import * as path from 'path';
-import { loadJsonData } from './jsonLoader';
 
 jest.mock('fs');
 jest.mock('path');

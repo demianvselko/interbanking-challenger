@@ -2,9 +2,10 @@ jest.mock('@infrastructure/utils/jsonLoader', () => ({
   loadJsonData: jest.fn(),
 }));
 
+import { Transfer } from '@domain/entities/transfer';
+import { TransferRepositoryImpl } from '@infrastructure/repositories/json/transfer.repository.impl';
 import { loadJsonData } from '@infrastructure/utils/jsonLoader';
-import { Transfer } from '@context/domain/core/entities/transfer';
-import { TransferRepositoryImpl } from './transfer.repository.impl';
+
 
 const mockedLoadJsonData = loadJsonData as jest.MockedFunction<
   typeof loadJsonData
@@ -46,7 +47,7 @@ describe('TransferRepositoryImpl', () => {
 
     const consoleSpy = jest
       .spyOn(console, 'error')
-      .mockImplementation(() => {});
+      .mockImplementation(() => { });
 
     const repo = new TransferRepositoryImpl();
 

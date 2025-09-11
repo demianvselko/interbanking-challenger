@@ -1,6 +1,7 @@
-import { Company } from '@context/domain/core/entities/company';
-import { AccountNumberVO } from '@context/domain/core/value-objects/transfer/accountNumber';
-import { TransferValidator } from './transfer.validator';
+import { Company } from "@domain/entities/company";
+import { TransferValidator } from "@domain/services/transfer.validator";
+import { AccountNumberVO } from "@domain/valueObjects/transfer";
+
 
 describe('TransferValidator', () => {
   let company: Company;

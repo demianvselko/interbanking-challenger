@@ -1,0 +1,26 @@
+service: interbankig-challenger
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  environment:
+    JWT_SECRET: ${env:JWT_SECRET}
+    DATABASE_URL: ${env:DATABASE_URL}
+
+functions:
+  createCompany:
+    handler: infra/lambdas/createCompanyLambda.createCompanyHandler
+    events:
+    - http:
+        path: companies
+        method: post
+        cors: true
+    layers:
+    - { Ref: NodeModulesLambdaLayer }
+
+layers:
+  nodeModules:
+    path: infra/layers/nodejs
+    compatibleRuntimes:
+    - nodejs20.x

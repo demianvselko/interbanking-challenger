@@ -1,0 +1,10 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "license": "ISC",
+  "description": "dependency for lambda",
+  "dependencies": {
+    "class-validator": "^0.14.2",
+    "uuid": "^13.0.0"
+  }
+}

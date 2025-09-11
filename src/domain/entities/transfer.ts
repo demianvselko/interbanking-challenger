@@ -1,9 +1,8 @@
 import { v4 as uuid4 } from 'uuid';
 
-import { TransferErrors } from 'domain/errors/transfer.errors';
+import { TransferErrors } from '@domain/errors/transfer.errors';
 import { Result } from '@domain/shared/result';
-import { AccountNumberVO } from '@domain/valueObjects/transfer/accountNumber';
-import { AmountVO } from '@domain/valueObjects/transfer/amount';
+import { AccountNumberVO, AmountVO } from '@domain/valueObjects/transfer';
 
 export class Transfer {
   private constructor(

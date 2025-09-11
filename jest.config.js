@@ -5,20 +5,19 @@ module.exports = {
     testMatch: ['**/*.spec.ts', '**/*.test.ts'],
     moduleFileExtensions: ['ts', 'js', 'json'],
     moduleNameMapper: {
-        '^@application/(.*)$': '<rootDir>/application/$1',
-        '^@domain/(.*)$': '<rootDir>/domain/$1',
-        '^@infrastructure/(.*)$': '<rootDir>/infrastructure/$1',
-        '^@interface/(.*)$': '<rootDir>/interface/$1',
-        '^@shared/(.*)$': '<rootDir>/shared/$1'
+        '^@application/(.*)$': '<rootDir>/src/application/$1',
+        '^@domain/(.*)$': '<rootDir>/src/domain/$1',
+        '^@infrastructure/(.*)$': '<rootDir>/src/infrastructure/$1',
+        '^@interface/(.*)$': '<rootDir>/src/interface/$1',
+        '^@shared/(.*)$': '<rootDir>/src/shared/$1',
     },
     transform: {
-        '^.+\\.(t|j)s$': 'ts-jest'
+        '^.+\\.(t|j)s$': 'ts-jest',
     },
     collectCoverage: true,
     collectCoverageFrom: [
-        '**/*.(ts|js)',
-        '!**/*.d.ts',
-        '!**/node_modules/**'
+        'src/**/*.(ts|js)',
+        '!src/**/*.d.ts',
     ],
-    coverageDirectory: '../coverage'
+    coverageDirectory: '../coverage',
 };

@@ -1,12 +1,15 @@
 import { v4 as uuid4 } from 'uuid';
 
-import { CompanyErrors } from 'domain/errors/company.errors';
-import { Result } from 'domain/shared/result';
-import { AdhesionDateVO } from '@domain/valueObjects/company/adhesionDate';
-import { CompanyNameVO } from '@domain/valueObjects/company/companyName';
-import { CompanyTypeVO } from '@domain/valueObjects/company/companyTypes';
-import { CuitVO } from '@domain/valueObjects/company/cuit';
-import { AccountNumberVO } from '@domain/valueObjects/transfer/accountNumber';
+import { CompanyErrors } from '@domain/errors/company.errors';
+import { Result } from '@domain/shared/result';
+import {
+  AdhesionDateVO,
+  CuitVO,
+  CompanyNameVO,
+  CompanyTypeVO,
+} from '@domain/valueObjects/company';
+
+import { AccountNumberVO } from '@domain/valueObjects/transfer';
 
 export class Company {
   private constructor(
