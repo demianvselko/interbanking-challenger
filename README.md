@@ -25,6 +25,8 @@ Para testear los endpoints:
   Usar ese token como Bearer Token en la cabecera Authorization de las requests.
 
 📌 Decisiones:
+Al hacer el npm i, la base de datos se creara sola y se populara.
+Si deciden cambiar el repositorio para usar Json, este tambien se cargara automaticamente al levantar el servidor, para poder tener datos de pruebas.
 
 Transferencias
   No pueden ser negativas.
@@ -34,7 +36,7 @@ Entidades
   Modeladas para asemejarse a escenarios reales.
   La fecha de adhesión se asigna automáticamente al crear la empresa.
 
-Búsqueda por fechas (todas se manejaran con el huso horario de UTF-0):
+Búsqueda por fechas (todas se manejaran con el huso horario de UTF-0, ya que me parece lo mas conveniente a la hora de manejar las fechas):
   Endpoint genérico con parámetros de rango de fechas.
   Por defecto trae el último mes, pero puede personalizarse.
 
