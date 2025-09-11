@@ -20,12 +20,12 @@ jobs:
         node-version: 20
         cache: 'npm'
 
-    - name: Install dependencies
+    - name: Instalar dependencias
       env:
         DATABASE_URL: "file:./test.db"
       run: npm ci
 
-    - name: Generate Prisma client
+    - name: Generar Prisma client
       run: npx prisma generate
 
     - name: Prepare test DB
