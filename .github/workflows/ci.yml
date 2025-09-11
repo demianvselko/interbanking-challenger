@@ -21,6 +21,8 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
+      env:
+        DATABASE_URL: "file:./test.db"
       run: npm ci
 
     - name: Generate Prisma client
