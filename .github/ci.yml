@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Generate Prisma client
+      run: npx prisma generate
+
+    - name: Prepare test DB
+      env:
+        DATABASE_URL: "file:./test.db"
+      run: npx prisma db push
+
+    - name: Run unit tests
+      env:
+        NODE_ENV: test
+        JWT_SECRET: "dont_hack_me_please"
+        AUTH_USER: "hackme"
+        AUTH_PASS: "please"
+        DATABASE_URL: "file:./test.db"
+      run: npm run test:unit
+
+    - name: Run e2e tests
+      env:
+        NODE_ENV: test
+        JWT_SECRET: "dont_hack_me_please"
+        AUTH_USER: "hackme"
+        AUTH_PASS: "please"
+        DATABASE_URL: "file:./test.db"
+      run: npm run test:e2e
+
+    - name: Upload coverage reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage
+        path: coverage

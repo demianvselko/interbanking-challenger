@@ -14,9 +14,13 @@ Interbanking Challenger
 
 🧪 Run tests
 
-# unit tests
+# unit tests (92% coverage)
 
   npm run test
+
+# e2e tests (52% coverage)
+
+  npm run test:e2e
 
 🔑 Authentication
 
