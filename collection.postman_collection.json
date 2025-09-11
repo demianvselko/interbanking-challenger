@@ -1,14 +1,39 @@
 {
 	"info": {
-		"_postman_id": "fa77da8c-d5c7-44af-99bf-dd375c904cc5",
-		"name": "Companies API",
-		"description": "Collection for testing companies endpoints with JWT",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "12682732"
+		"name": "Interbanking Challenger",
+		"_postman_id": "b1234567-89ab-cdef-0123-456789abcdef",
+		"description": "Colección de endpoints para probar la API del proyecto Interbanking Challenger",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Create Company - PyME (Auth OK)",
+			"name": "Auth - Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"hackme\",\n  \"password\": \"please\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/auth/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			}
+		},
+		{
+			"name": "Company - Crear",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -18,20 +43,19 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer {{jwt_token}}"
+						"value": "Bearer {{token}}",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"cuit\": \"66666666666\",\n  \"name\": \"Empresa Zeta\",\n  \"type\": \"PYME\",\n  \"accounts\": [\"66666666661\", \"66666666662\"]\n}"
+					"raw": "{\n  \"cuit\": \"12345678901\",\n  \"name\": \"Empresa Test\",\n  \"type\": \"PYME\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/companies",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/companies",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "3000",
 					"path": [
 						"companies"
 					]
@@ -39,53 +63,21 @@
 			}
 		},
 		{
-			"name": "Create Company - Corporativa (Auth OK)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{jwt_token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"cuit\": \"77777777777\",\n  \"name\": \"Empresa Eta\",\n  \"type\": \"CORPORATIVA\",\n  \"accounts\": [\"77777777771\"]\n}"
-				},
-				"url": {
-					"raw": "http://localhost:3000/companies",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"companies"
-					]
-				}
-			}
-		},
-		{
-			"name": "Get Companies Adhered Last Month (Auth OK)",
+			"name": "Company - Adhesiones",
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{jwt_token}}"
+						"value": "Bearer {{token}}",
+						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/companies/adhesion",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/companies/adhesion",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "3000",
 					"path": [
 						"companies",
 						"adhesion"
@@ -94,53 +86,53 @@
 			}
 		},
 		{
-			"name": "Get Companies with Transfers Last Month (Auth OK)",
+			"name": "Company - Transferencias",
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer {{jwt_token}}"
+						"value": "Bearer {{token}}",
+						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/companies/transfers",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/companies/transfers?from=2025-08-01&to=2025-09-01",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "3000",
 					"path": [
 						"companies",
 						"transfers"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2025-08-01"
+						},
+						{
+							"key": "to",
+							"value": "2025-09-01"
+						}
 					]
 				}
 			}
 		},
 		{
-			"name": "Get Companies Adhered Last Month (NO Auth - debe fallar)",
+			"name": "Healthcheck",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/companies/adhesion",
-					"protocol": "http",
+					"raw": "{{baseUrl}}/health",
 					"host": [
-						"localhost"
+						"{{baseUrl}}"
 					],
-					"port": "3000",
 					"path": [
-						"companies",
-						"adhesion"
+						"health"
 					]
 				}
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "jwt_token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 		}
 	]
 }
