@@ -50,3 +50,4 @@ jobs:
         AUTH_PASS: "please"
         DATABASE_URL: "file:./test.db"
       run: npm run test:e2e
+
