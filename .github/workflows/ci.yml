@@ -50,9 +50,3 @@ jobs:
         AUTH_PASS: "please"
         DATABASE_URL: "file:./test.db"
       run: npm run test:e2e
-
-    - name: Upload coverage reports
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage
-        path: coverage
